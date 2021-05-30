@@ -1,0 +1,107 @@
+version: "2.0"
+actions:
+  - action_check_local_time
+  - action_receive_name
+  - action_say_name
+  - action_receive_city
+
+intents:
+  - greet
+  - goodbye
+  - bot_challenge
+  - congrat
+  - time
+  - weather:
+      use_entitites:
+        - city
+  - tell_name:
+      use_entitites:
+        - name
+  - give_name
+  - repeat_name
+  - give_city
+  - my_email:
+      use_entitites:
+        - email
+      ignore_entities:
+        - phone
+  - mobile_number:
+        use_entitites:
+        - phone
+
+
+entities: 
+  - email
+  - phone
+  - name
+  - city
+
+slots:
+  email:
+    type: text
+  phone:
+    type: text
+  city:
+    type: text
+  name:
+    type: text
+
+responses:
+  utter_greet:
+  - text: "Привет! Как дела?"
+  - text: 'Добрый день!'
+
+  utter_ask_name:
+  - text: "Как вас зовут"
+  - text: "Как могу к вам обращаться?"
+
+  utter_ask_city:
+  - text: "В каком городе?"
+  - text: "Где вы находитесь?"
+
+  utter_my_email:
+  - text: Назовите ваш эмайл
+  - text: Какой ваш почтовый адрес?
+
+  utter_mobile_number:
+  - text:  Можно узнать ваш номер телефона?
+
+  utter_say_nm:
+  - text:  Я запомнил ваше имя {name}
+  utter_thanks:
+  - text:  Спасибо за информацию!
+
+
+  utter_cheer_up:
+  - text: "Here is something to cheer you up:"
+    image: "https://cdnb.artstation.com/p/assets/images/images/019/413/053/large/dope-pope-zbehemoth-alt.jpg?1563373404"
+
+  utter_did_that_help:
+  - text: "Did that help you?"
+
+  utter_time:
+    - text: "В Петропавловске-Камчатском полночь"
+    - text: "Время кофе-брейка"
+
+  utter_weather:
+    - text: "23 градуса цельсия"
+    - text: "Ожидается сильный ливень"
+
+  utter_happy:
+  - text: "Great, carry on!"
+
+  utter_goodbye:
+  - text: "Хорошего дня"
+  - text: 'До встречи!'
+
+
+
+  utter_iamabot:
+  - text: "Да, я бот, джеймс бот"
+  - text: "Да, я бот на RASA"
+
+
+
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: true

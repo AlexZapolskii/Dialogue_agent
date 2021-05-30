@@ -1,0 +1,55 @@
+version: "2.0"
+
+stories:
+
+- story: check time
+  steps:
+    - intent: greet
+    - action: utter_greet
+    - intent: time
+    - action: action_check_local_time
+  
+- story: check current weather
+  steps:
+    - intent: greet
+    - action: utter_greet
+    - intent: weather
+      entities:
+        - city: 'Пермь'
+    - slot_was_set:
+        - city: 'Пермь' 
+    - action: action_check_local_time
+
+- story: provide credentials
+  steps:
+    - intent: greet
+    - action: utter_greet
+    - intent: my_email
+      entities:
+      - email: 'yaya@yandex.ru'
+    - slot_was_set:
+      - email: 'yaya@yandex.ru' 
+    - action: utter_mobile_number
+    - intent: mobile_number
+      entities:
+      - phone: '89194667865'
+    - slot_was_set:
+      - phone: '89194667865' 
+    - action: utter_thanks
+
+- story: name path
+  steps:
+    - intent: repeat_name
+    - action: action_say_name
+    - intent: tell_name
+      entities:
+      - name: 'Алексей'
+    - slot_was_set:
+      - name: 'Алексей' 
+    - action: utter_say_nm
+    - intent: repeat_name
+    - action: action_say_name 
+
+
+
+
